@@ -1,0 +1,74 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h1 class="title">
+      Printing Press System
+    </h1>
+
+    <p class="subtitle">
+      Sign in to continue
+    </p>
+
+    <!-- ERROR -->
+
+    <div
+      class="error-box"
+      *ngIf="errorMessage()">
+
+      {{ errorMessage() }}
+
+    </div>
+
+    <!-- FORM -->
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="login()">
+
+      <!-- EMAIL -->
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          formControlName="email">
+
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          type="password"
+          formControlName="password">
+
+      </div>
+
+      <!-- BUTTON -->
+
+      <button
+        type="submit"
+        class="login-btn"
+        [disabled]="loading()">
+
+        <span *ngIf="!loading()">
+          LOGIN
+        </span>
+
+        <span *ngIf="loading()">
+          Logging in...
+        </span>
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
