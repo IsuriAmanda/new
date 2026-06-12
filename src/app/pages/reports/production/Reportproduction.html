@@ -1,0 +1,99 @@
+<div class="report-page">
+  <div class="page-header">
+    <div>
+      <a routerLink="/reports" class="back-link">Reports</a>
+      <h1>Production Report</h1>
+      <p>Monitor job progress, production stages, department workload, and delays.</p>
+    </div>
+    <button class="export-btn">Export PDF</button>
+  </div>
+
+  <div class="filters-panel">
+    <label>
+      Department
+      <select [(ngModel)]="filters.department">
+        <option>All</option>
+        <option>Printing</option>
+        <option>Cutting</option>
+        <option>Binding</option>
+        <option>Packing</option>
+      </select>
+    </label>
+    <label>
+      Stage
+      <select [(ngModel)]="filters.stage">
+        <option>All</option>
+        <option>Printing</option>
+        <option>Cutting</option>
+        <option>Folding</option>
+        <option>Binding</option>
+        <option>Packing</option>
+        <option>Completed</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card" *ngFor="let card of summaryCards">
+      <span>{{ card.title }}</span>
+      <strong>{{ card.value }}</strong>
+      <small>{{ card.note }}</small>
+    </div>
+  </div>
+
+  <div class="two-column">
+    <section class="panel">
+      <h2>Jobs In Each Stage</h2>
+      <div class="progress-row" *ngFor="let row of stages">
+        <div class="row-head">
+          <span>{{ row.name }}</span>
+          <b>{{ row.count }}</b>
+        </div>
+        <div class="bar">
+          <span [style.width.%]="row.percent"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Department Workload</h2>
+      <div class="department-card" *ngFor="let row of departments">
+        <div>
+          <strong>{{ row.name }}</strong>
+          <span>{{ row.active }} active jobs - {{ row.delayed }} delayed</span>
+        </div>
+        <b>{{ row.workload }}</b>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Tracked Job Tickets</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Quotation</th>
+          <th>Customer</th>
+          <th>Stage</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of jobRows">
+          <td>{{ row.id }}</td>
+          <td>{{ row.quotation }}</td>
+          <td>{{ row.customer }}</td>
+          <td>{{ row.stage }}</td>
+          <td>{{ row.due }}</td>
+          <td>
+            <span class="status" [ngClass]="getStatusClass(row.status)">
+              {{ row.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

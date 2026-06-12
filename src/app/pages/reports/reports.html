@@ -1,0 +1,144 @@
+<div class="reports-page">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Reports</p>
+      <h1>Management Reports Overview</h1>
+      <p class="header-copy">
+        Practical summaries for quotations, production, customers, supplies, and machines.
+      </p>
+    </div>
+
+    <button class="export-btn">
+      Export Summary
+    </button>
+  </div>
+
+  <div class="filters-panel">
+    <label>
+      From
+      <input type="date" [(ngModel)]="filters.from">
+    </label>
+
+    <label>
+      To
+      <input type="date" [(ngModel)]="filters.to">
+    </label>
+
+    <label>
+      Status
+      <select [(ngModel)]="filters.status">
+        <option>All</option>
+        <option>Pending</option>
+        <option>Confirmed</option>
+        <option>Completed</option>
+        <option>Delayed</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="stats-grid">
+    <div
+      class="stat-card"
+      *ngFor="let item of reportData"
+      [ngClass]="item.tone">
+      <div class="stat-title">
+        {{ item.title }}
+      </div>
+
+      <div class="stat-value">
+        {{ item.value }}
+      </div>
+
+      <div class="stat-helper">
+        {{ item.helper }}
+      </div>
+    </div>
+  </div>
+
+  <div class="report-card-grid">
+    <a
+      class="report-card"
+      *ngFor="let card of reportCards"
+      [routerLink]="card.route">
+      <div class="report-card-title">
+        {{ card.title }}
+      </div>
+
+      <p>
+        {{ card.description }}
+      </p>
+
+      <div class="metric-list">
+        <span *ngFor="let metric of card.metrics">
+          {{ metric }}
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <div class="content-grid">
+    <section class="report-table-area">
+      <div class="table-header">
+        <div>
+          <div class="table-title">Recent Report Activity</div>
+          <p>Latest records that will feed the reporting dashboard.</p>
+        </div>
+      </div>
+
+      <table class="reports-table">
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Type</th>
+            <th>Customer / Item</th>
+            <th>Value</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let row of recentReports">
+            <td>{{ row.id }}</td>
+            <td>{{ row.type }}</td>
+            <td>{{ row.customer }}</td>
+            <td>{{ row.value }}</td>
+            <td>
+              <span class="status" [ngClass]="getStatusClass(row.status)">
+                {{ row.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="side-panel">
+      <div class="table-title">Top Customers</div>
+      <div class="compact-row" *ngFor="let customer of customerRows">
+        <div>
+          <strong>{{ customer.name }}</strong>
+          <span>{{ customer.orders }} orders - {{ customer.frequency }}</span>
+        </div>
+        <b>{{ customer.total }}</b>
+      </div>
+    </section>
+  </div>
+
+  <section class="report-table-area">
+    <div class="table-header">
+      <div>
+        <div class="table-title">Supply Usage Snapshot</div>
+        <p>Simple usage indicators from quotation costing and production records.</p>
+      </div>
+    </div>
+
+    <div class="supply-grid">
+      <div class="supply-card" *ngFor="let row of supplyRows">
+        <span>{{ row.category }}</span>
+        <strong>{{ row.item }}</strong>
+        <p>{{ row.usage }}</p>
+        <small>{{ row.status }}</small>
+      </div>
+    </div>
+  </section>
+</div>

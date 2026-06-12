@@ -1,0 +1,90 @@
+<div class="report-page">
+  <div class="page-header">
+    <div>
+      <a routerLink="/reports" class="back-link">Reports</a>
+      <h1>Quotation Report</h1>
+      <p>Summary of quotation volume, value, status, and most requested work.</p>
+    </div>
+    <button class="export-btn">Export PDF</button>
+  </div>
+
+  <div class="filters-panel">
+    <label>
+      Month
+      <input type="month" [(ngModel)]="filters.month">
+    </label>
+    <label>
+      Status
+      <select [(ngModel)]="filters.status">
+        <option>All</option>
+        <option>Draft</option>
+        <option>Sent</option>
+        <option>Pending</option>
+        <option>Confirmed</option>
+        <option>Rejected</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card" *ngFor="let card of summaryCards">
+      <span>{{ card.title }}</span>
+      <strong>{{ card.value }}</strong>
+      <small>{{ card.note }}</small>
+    </div>
+  </div>
+
+  <div class="two-column">
+    <section class="panel">
+      <h2>Status Breakdown</h2>
+      <div class="progress-row" *ngFor="let row of statusRows">
+        <div class="row-head">
+          <span>{{ row.status }}</span>
+          <b>{{ row.count }}</b>
+        </div>
+        <div class="bar">
+          <span [style.width.%]="row.percent"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Most Requested</h2>
+      <div class="rank-row" *ngFor="let item of requestedItems">
+        <div>
+          <strong>{{ item.name }}</strong>
+          <span>{{ item.category }}</span>
+        </div>
+        <b>{{ item.count }}</b>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Recent Quotations</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Quotation</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of quotationRows">
+          <td>{{ row.id }}</td>
+          <td>{{ row.customer }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.total }}</td>
+          <td>
+            <span class="status" [ngClass]="getStatusClass(row.status)">
+              {{ row.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

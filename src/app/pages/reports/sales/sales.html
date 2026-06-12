@@ -1,0 +1,84 @@
+<div class="report-page">
+  <div class="page-header">
+    <div>
+      <a routerLink="/reports" class="back-link">Reports</a>
+      <h1>Revenue Summary</h1>
+      <p>Estimated revenue and profit view based on confirmed quotations and completed jobs.</p>
+    </div>
+    <button class="export-btn">Export PDF</button>
+  </div>
+
+  <div class="filters-panel">
+    <label>
+      From
+      <input type="date" [(ngModel)]="filters.from">
+    </label>
+    <label>
+      To
+      <input type="date" [(ngModel)]="filters.to">
+    </label>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card" *ngFor="let card of summaryCards">
+      <span>{{ card.title }}</span>
+      <strong>{{ card.value }}</strong>
+      <small>{{ card.note }}</small>
+    </div>
+  </div>
+
+  <div class="two-column">
+    <section class="panel">
+      <h2>Monthly Trend</h2>
+      <div class="trend-row" *ngFor="let row of monthlyRows">
+        <div>
+          <strong>{{ row.month }}</strong>
+          <span>{{ row.quotations }} quotations</span>
+        </div>
+        <b>{{ row.revenue }}</b>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Report Notes</h2>
+      <p class="note">
+        This is an estimated business report. Final accounting, payments, invoices, and payroll
+        are outside the current project scope.
+      </p>
+      <p class="note">
+        Backend data later comes from quotation totals, material costs, extra charges, profit
+        margin, and completed job tickets.
+      </p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>High Value Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Reference</th>
+          <th>Customer</th>
+          <th>Type</th>
+          <th>Value</th>
+          <th>Margin</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows">
+          <td>{{ row.id }}</td>
+          <td>{{ row.customer }}</td>
+          <td>{{ row.type }}</td>
+          <td>{{ row.value }}</td>
+          <td>{{ row.margin }}</td>
+          <td>
+            <span class="status" [ngClass]="getStatusClass(row.status)">
+              {{ row.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
