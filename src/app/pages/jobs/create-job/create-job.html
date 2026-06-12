@@ -1,0 +1,153 @@
+<div class="create-job-form">
+
+  <div class="form-header">
+    <h3>Create New Job</h3>
+    <button type="button" class="btn-close" (click)="cancel()">✕</button>
+  </div>
+
+  <form [formGroup]="form">
+
+    <!-- BASIC INFO -->
+    <div class="section-title">Basic Information</div>
+
+    <div class="row">
+      <label>Job Name <span class="req">*</span></label>
+      <input type="text" formControlName="job_name">
+    </div>
+
+    <div class="row">
+      <label>Job Type</label>
+      <select formControlName="job_type">
+        <option value="">Select</option>
+        <option value="book">Book</option>
+        <option value="leaflet">Leaflet</option>
+        <option value="brochure">Brochure</option>
+        <option value="card">Business Card</option>
+        <option value="sticker">Sticker</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Priority</label>
+      <select formControlName="priority">
+        <option value="LOW">Low</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="URGENT">Urgent</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Due Date</label>
+      <input type="date" formControlName="due_date">
+    </div>
+
+    <!-- CUSTOMER -->
+    <div class="section-title">Customer</div>
+
+    <div class="row">
+      <label>Customer <span class="req">*</span></label>
+      <select formControlName="customer_id">
+        <option [value]="null">Select Customer</option>
+        <option
+          *ngFor="let c of customers"
+          [value]="c.customer_id">
+          {{ c.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- SPECIFICATIONS -->
+    <div class="section-title">Job Specifications</div>
+
+    <div class="row">
+      <label>Quantity</label>
+      <input type="number" formControlName="quantity">
+    </div>
+
+    <div class="row">
+      <label>Width (mm)</label>
+      <input type="number" formControlName="width">
+    </div>
+
+    <div class="row">
+      <label>Height (mm)</label>
+      <input type="number" formControlName="height">
+    </div>
+
+    <div class="row">
+      <label>Pages</label>
+      <input type="number" formControlName="pages">
+    </div>
+
+    <div class="row">
+      <label>Inside Material</label>
+      <input type="text" formControlName="material">
+    </div>
+
+    <div class="row">
+      <label>Cover Material</label>
+      <input type="text" formControlName="cover_material">
+    </div>
+
+    <!-- FINISHING -->
+    <div class="section-title">Finishing</div>
+
+    <div class="row">
+      <label>Binding</label>
+      <select formControlName="binding_id">
+        <option [value]="null">None</option>
+        <option [value]="1">Center</option>
+        <option [value]="2">Perfect</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Lamination</label>
+      <select formControlName="lamination_id">
+        <option [value]="null">None</option>
+        <option [value]="1">Glossy</option>
+        <option [value]="2">Matte</option>
+      </select>
+    </div>
+
+    <!-- PRODUCTION -->
+    <div class="section-title">Production</div>
+
+    <div class="row">
+      <label>Assign Machine</label>
+      <select formControlName="machine_id">
+        <option [value]="null">— Select Machine —</option>
+        <option
+          *ngFor="let m of machines"
+          [value]="m.machine_id">
+          {{ m.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Remarks</label>
+      <textarea formControlName="remarks" rows="3"></textarea>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="button-row">
+      <button
+        type="button"
+        class="btn-cancel"
+        (click)="cancel()">
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn-submit"
+        (click)="submit()"
+        [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating...' : 'Create Job' }}
+      </button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,186 @@
+<div class="jobs-page">
+
+  <div class="page-header">
+    <h2>Production Jobs</h2>
+    <button class="btn-create" (click)="openCreateModal()">
+      + Create Job
+    </button>
+  </div>
+
+  <div class="filter-bar">
+    <input
+      type="text"
+      placeholder="Search jobs..."
+      class="search-input"
+      [ngModel]="searchTerm()"
+      (ngModelChange)="searchTerm.set($event)">
+
+    <select
+      class="status-filter"
+      [ngModel]="statusFilter()"
+      (ngModelChange)="statusFilter.set($event)">
+      <option value="All">All Status</option>
+      <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading jobs...</div>
+
+  <div class="table-wrapper" *ngIf="!isLoading">
+    <table class="jobs-table">
+      <thead>
+        <tr>
+          <th>Job No</th>
+          <th>Job Name</th>
+          <th>Customer</th>
+          <th>Type</th>
+          <th>Qty</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Machine</th>
+          <th>Due Date</th>
+          <th>Source</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of filteredJobs()">
+
+          <td>{{ job.job_number }}</td>
+
+          <td>
+            <input
+              *ngIf="editRowId() === job.job_id"
+              type="text"
+              class="cell-input"
+              [(ngModel)]="editCache['job_name']">
+            <span *ngIf="editRowId() !== job.job_id">
+              {{ job.job_name }}
+            </span>
+          </td>
+
+          <td>{{ job.customer_name || '—' }}</td>
+
+          <td>{{ job.job_type || '—' }}</td>
+
+          <td>{{ job.quantity || '—' }}</td>
+
+          <td>
+            <select
+              *ngIf="editRowId() === job.job_id"
+              class="cell-select"
+              [(ngModel)]="editCache['priority']">
+              <option *ngFor="let p of priorityOptions" [value]="p">
+                {{ p }}
+              </option>
+            </select>
+            <span
+              *ngIf="editRowId() !== job.job_id"
+              [class]="'badge-priority ' + priorityClass(job.priority || '')">
+              {{ job.priority }}
+            </span>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editRowId() === job.job_id; else viewStatus">
+              <select
+                class="cell-select status-dropdown-editable"
+                [class]="statusClass(editCache['status'] || '')"
+                [(ngModel)]="editCache['status']">
+                <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+              </select>
+            </ng-container>
+            <ng-template #viewStatus>
+              <select
+                class="cell-select inline-status-trigger"
+                [class]="statusClass(job.status || '')"
+                [ngModel]="job.status"
+                (ngModelChange)="updateStatus(job, $event)">
+                <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+              </select>
+            </ng-template>
+          </td>
+
+          <td>
+            <select
+              class="cell-select"
+              [ngModel]="job.machine_id"
+              (ngModelChange)="assignMachine(job, $event)">
+              <option value="">— Assign —</option>
+              <option
+                *ngFor="let m of machines()"
+                [value]="m.machine_id">
+                {{ m.name }}
+              </option>
+            </select>
+          </td>
+
+          <td>
+            <input
+              *ngIf="editRowId() === job.job_id"
+              type="date"
+              class="cell-input"
+              [(ngModel)]="editCache['due_date']">
+            <span *ngIf="editRowId() !== job.job_id">
+              {{ job.due_date | date:'dd MMM yyyy' }}
+            </span>
+          </td>
+
+          <td>
+            <span [class]="'badge-source ' + ('badge-' + (job.source?.toLowerCase() || ''))">
+              {{ job.source }}
+            </span>
+          </td>
+
+          <td class="action-cell">
+            <ng-container *ngIf="editRowId() !== job.job_id">
+              <button
+                type="button"
+                class="btn-edit"
+                (click)="startEdit(job)">
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn-delete"
+                (click)="deleteJob(job)">
+                Delete
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="editRowId() === job.job_id">
+              <button
+                type="button"
+                class="btn-save"
+                (click)="saveEdit(job)">
+                Save
+              </button>
+              <button
+                type="button"
+                class="btn-cancel"
+                (click)="cancelEdit()">
+                Cancel
+              </button>
+            </ng-container>
+          </td>
+
+        </tr>
+
+        <tr *ngIf="filteredJobs().length === 0">
+          <td colspan="11" class="empty">No jobs found</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showCreateModal()">
+    <div class="modal-box">
+      <app-create-job
+        (jobCreated)="onJobCreated()"
+        (cancelled)="closeCreateModal()">
+      </app-create-job>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,131 @@
+// ── Create Job Form ────────────────────────────────────────
+
+.create-job-form {
+  font-family: 'Segoe UI', sans-serif;
+  padding    : 24px 28px;
+  max-height : 85vh;
+  overflow-y : auto;
+}
+
+// ── Header ─────────────────────────────────────────────────
+.form-header {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  margin-bottom  : 20px;
+  padding-bottom : 12px;
+  border-bottom  : 1px solid #e2dee2;
+
+  h3 {
+    font-size  : 15px;
+    font-weight: 600;
+    color      : #333;
+    margin     : 0;
+  }
+
+  .btn-close {
+    background : none;
+    border     : none;
+    font-size  : 16px;
+    color      : #888;
+    cursor     : pointer;
+    padding    : 0 4px;
+
+    &:hover { color: #333; }
+  }
+}
+
+// ── Section titles ─────────────────────────────────────────
+.section-title {
+  font-size     : 10px;
+  font-weight   : 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color         : #2d7a1f;
+  margin        : 16px 0 8px;
+  padding-bottom: 4px;
+  border-bottom : 1px solid #d9e3d5;
+}
+
+// ── Form rows ──────────────────────────────────────────────
+.row {
+  display      : flex;
+  align-items  : center;
+  margin-bottom: 8px;
+  gap          : 8px;
+
+  label {
+    width      : 140px;
+    min-width  : 140px;
+    font-size  : 12px;
+    color      : #555;
+    font-weight: 500;
+
+    .req { color: #dc3545; margin-left: 2px; }
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    flex         : 1;
+    height       : 30px;
+    border       : 1px solid #ccc;
+    border-radius: 4px;
+    padding      : 0 8px;
+    font-size    : 12px;
+    background   : #fff;
+    color        : #333;
+
+    &:focus {
+      outline     : none;
+      border-color: #2d7a1f;
+      box-shadow  : 0 0 0 2px rgba(45,122,31,0.1);
+    }
+  }
+
+  textarea {
+    height    : auto;
+    min-height: 70px;
+    padding   : 6px 8px;
+    resize    : vertical;
+  }
+}
+
+// ── Buttons ────────────────────────────────────────────────
+.button-row {
+  display        : flex;
+  justify-content: flex-end;
+  gap            : 8px;
+  margin-top     : 20px;
+  padding-top    : 14px;
+  border-top     : 1px solid #e2dee2;
+}
+
+.btn-submit {
+  background   : #2d7a1f;
+  color        : #fff;
+  border       : none;
+  border-radius: 4px;
+  padding      : 7px 18px;
+  font-size    : 12px;
+  font-weight  : 600;
+  cursor       : pointer;
+
+  &:hover    { background: #236018; }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.btn-cancel {
+  background   : #e0e0e0;
+  color        : #333;
+  border       : none;
+  border-radius: 4px;
+  padding      : 7px 18px;
+  font-size    : 12px;
+  font-weight  : 500;
+  cursor       : pointer;
+
+  &:hover { background: #d0d0d0; }
+}
