@@ -1,0 +1,210 @@
+<div class="quotation-page">
+  <h2 class="page-title">Quotation Details</h2>
+
+  <div *ngIf="isLoading" class="loading-state" style="text-align: center; padding: 3rem; font-weight: bold; color: #666;">
+    Loading quotation primary details from database...
+  </div>
+
+  <div *ngIf="!isLoading" class="form-card" [class.view-mode]="isViewMode">
+
+    <p class="quotation-no">Quotation No: {{ quotation?.id }}</p>
+    <p class="customer-name">Customer: {{ quotation?.customer_name }}</p>
+
+    <div class="card-body">
+
+      <div class="form-fields">
+        <form [formGroup]="form">
+
+          <div class="row">
+            <label>Job Name:</label>
+            <input type="text" formControlName="jobName" [readonly]="isViewMode">
+          </div>
+
+          <div class="row">
+            <label>Job Type:</label>
+            <select formControlName="jobType" [attr.disabled]="isViewMode ? true : null">
+              <option value="">Select</option>
+              <option value="book">Book</option>
+              <option value="leaflet">Leaflet</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label>Job Qty:</label>
+            <input type="number" formControlName="jobQty" [readonly]="isViewMode">
+          </div>
+
+          <div class="row">
+            <label>Job Size-height:</label>
+            <input type="text" formControlName="jobSizeHeight" [readonly]="isViewMode">
+          </div>
+          <div class="row">
+            <label>Job Size-width:</label>
+            <input type="text" formControlName="jobSizeWidth" [readonly]="isViewMode">
+          </div>
+
+          <div class="row">
+            <label>Margin Size:</label>
+            <input type="text" formControlName="marginSize" [readonly]="isViewMode">
+          </div>
+
+          <div class="row">
+            <label>Pages Qty:</label>
+            <input type="number" formControlName="pagesQty" [readonly]="isViewMode">
+          </div>
+
+          <div class="row">
+            <label>Materials supplied by HP:</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" [value]="true" formControlName="hpMaterial" [attr.disabled]="isViewMode ? true : null"> Yes
+              </label>
+              <label>
+                <input type="radio" [value]="false" formControlName="hpMaterial" [attr.disabled]="isViewMode ? true : null"> No
+              </label>
+            </div>
+          </div>
+
+          <div class="row multi">
+            <label>Materials:</label>
+            <div class="group">
+              <span>Pages/Leaflets</span>
+              <select formControlName="pagesLeaflets" [attr.disabled]="isViewMode ? true : null">
+                <option value="" disabled>Select material</option>
+                <option value="60gsm">60gsm</option>
+                <option value="70gsm">70gsm</option>
+                <option value="80gsm">80gsm</option>
+                <option value="100gsm">100gsm</option>
+                <option value="120gsm">120gsm</option>
+              </select>
+            </div>
+            <div class="group">
+              <span>Cover</span>
+              <select formControlName="coverMaterial" [attr.disabled]="isViewMode ? true : null">
+                <option value="60gsm">60gsm</option>
+                <option value="70gsm">70gsm</option>
+                <option value="80gsm">80gsm</option>
+                <option value="100gsm">100gsm</option>
+                <option value="120gsm">120gsm</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row multi">
+            <label>Colour:</label>
+
+            <div class="group">
+              <span>Pages/Leaflets (Inside)</span>
+              <div class="sub-row">
+                <span>Front</span>
+                <select formControlName="pagesFrontColor" [attr.disabled]="isViewMode ? true : null">
+                  <option value="none">None</option>
+                  <option value="1">1 Color</option>
+                  <option value="4">4 Color</option>
+                </select>
+              </div>
+              <div class="sub-row">
+                <span>Back</span>
+                <select formControlName="pagesBackColor" [attr.disabled]="isViewMode ? true : null">
+                  <option value="none">None</option>
+                  <option value="1">1 Color</option>
+                  <option value="4">4 Color</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="group">
+              <span>Cover</span>
+              <div class="sub-row">
+                <span>Front</span>
+                <select formControlName="coverFrontColor" [attr.disabled]="isViewMode ? true : null">
+                  <option value="none">None</option>
+                  <option value="1">1 Color</option>
+                  <option value="4">4 Color</option>
+                </select>
+              </div>
+              <div class="sub-row">
+                <span>Back</span>
+                <select formControlName="coverBackColor" [attr.disabled]="isViewMode ? true : null">
+                  <option value="none">None</option>
+                  <option value="1">1 Color</option>
+                  <option value="4">4 Color</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Laminate:</label>
+            <div class="radio-group">
+              <label><input type="radio" value="none" formControlName="laminate" [attr.disabled]="isViewMode ? true : null"> None</label>
+              <label><input type="radio" value="gloss" formControlName="laminate" [attr.disabled]="isViewMode ? true : null"> Gloss</label>
+              <label><input type="radio" value="matt" formControlName="laminate" [attr.disabled]="isViewMode ? true : null"> Matt</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Binding:</label>
+            <div class="radio-group">
+              <label><input type="radio" value="none" formControlName="binding" [attr.disabled]="isViewMode ? true : null"> None</label>
+              <label><input type="radio" value="perfect" formControlName="binding" [attr.disabled]="isViewMode ? true : null"> Perfect</label>
+              <label><input type="radio" value="center" formControlName="binding" [attr.disabled]="isViewMode ? true : null"> Center</label>
+            </div>
+          </div>
+
+          <div class="row multi">
+            <label>Extra Charges:</label>
+            <input type="number" formControlName="extraChargesPct" class="small pct-input" [readonly]="isViewMode">
+            <span>%</span>
+          </div>
+
+          <div class="row multi">
+            <label>Profit Margin:</label>
+            <input type="number" formControlName="profitMarginPct" class="small pct-input" [readonly]="isViewMode">
+            <span>%</span>
+          </div>
+
+          <div class="row">
+            <label>Sample Design:</label>
+            <input type="file" [attr.disabled]="isViewMode ? true : null">
+          </div>
+
+          <div class="button-row" *ngIf="!isViewMode">
+            <button type="button" class="submit-btn" (click)="viewQuotation()">VIEW</button>
+          </div>
+
+          <div class="button-row" *ngIf="isViewMode">
+            <button type="button" class="save-btn" (click)="saveQuotation()" [disabled]="isSaving">
+              {{ isSaving ? 'Saving to DB...' : 'SAVE QUOTATION' }}
+            </button>
+            <button type="button" class="email-btn" (click)="sendEmail()" [disabled]="isSendingEmail">
+              {{ isSendingEmail ? 'Sending Email...' : 'SEND AN EMAIL' }}
+            </button>
+            <button type="button" class="download-btn" (click)="downloadQuotation()">DOWNLOAD</button>
+          </div>
+
+          <p class="total" *ngIf="total > 0">Estimated Total: Rs. {{ total | number:'1.2-2' }}</p>
+
+        </form>
+      </div>
+
+      <div class="cutting-view-panel" *ngIf="isViewMode">
+        <p class="cutting-view-label">Cutting-View</p>
+        <div class="cutting-view-box">
+          <div class="cutting-preview">
+            <div class="cut-sheet">
+              <div class="cut-item" *ngFor="let i of cuttingGrid">
+                <div class="cut-inner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-actions">
+    <button class="back-btn" (click)="goBack()">Back &larr;</button>
+  </div>
+</div>

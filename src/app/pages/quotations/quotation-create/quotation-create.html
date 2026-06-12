@@ -1,0 +1,76 @@
+<div class="quotation-page">
+
+  <div class="quotation-box">
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+      Quotation Primary Details
+    </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-area">
+
+      <div class="section-title">
+        Customer Details
+      </div>
+
+      <!-- ROW -->
+
+      <div class="form-row">
+
+        <label>
+          Customer Name
+        </label>
+
+        <input type="text" formControlName="customerName">
+
+      </div>
+
+      <!-- ROW -->
+
+      <div class="form-row">
+
+        <label>
+          Telephone No
+        </label>
+
+        <input type="text" formControlName="phoneNumber">
+
+      </div>
+
+      <!-- ROW -->
+
+      <div class="form-row">
+
+        <label>
+          Email
+        </label>
+
+        <input type="email" formControlName="email">
+
+      </div>
+
+      <div class="form-error" *ngIf="form.invalid && form.touched">
+        Please complete all required fields and enter a valid email address.
+      </div>
+
+      <!-- BUTTON -->
+
+      <div class="button-area">
+
+<button
+            class="submit-btn"
+            type="submit"
+            [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Creating...' : 'SUBMIT' }}
+          </button>
+
+      </div>
+
+    </div>
+</form>
+  </div>
+
+</div>
