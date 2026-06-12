@@ -1,0 +1,29 @@
+<app-dashboard-card>
+
+<app-section-title
+  title="Machine Utilization">
+</app-section-title>
+
+  <div class="machine-list">
+
+    <div
+      class="machine-item"
+      *ngFor="let machine of machines">
+
+      <div class="machine-header">
+
+        <h4>{{ machine.name }}</h4>
+
+        <span>{{ machine.utilization }}%</span>
+
+      </div>
+
+      <app-progress-bar
+        [value]="machine.utilization">
+      </app-progress-bar>
+
+    </div>
+
+  </div>
+
+</app-dashboard-card>

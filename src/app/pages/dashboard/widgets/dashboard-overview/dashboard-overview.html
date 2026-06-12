@@ -1,0 +1,137 @@
+<div class="dashboard-page">
+
+  <!-- QUOTATION SUMMARY -->
+
+  <section class="dashboard-section">
+
+    <h2>
+      Quotation Summary
+    </h2>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+
+        <h3>Total Quotations</h3>
+
+        <p>
+          {{
+            dashboardService
+            .totalQuotations()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Confirmed</h3>
+
+        <p>
+          {{
+            dashboardService
+            .confirmedQuotations()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Cancelled</h3>
+
+        <p>
+          {{
+            dashboardService
+            .cancelledQuotations()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Total Value</h3>
+
+        <p>
+          Rs.
+          {{
+            dashboardService
+            .totalQuotationValue()
+            | number:'1.0-0'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTION SUMMARY -->
+
+  <section class="dashboard-section">
+
+    <h2>
+      Production Summary
+    </h2>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+
+        <h3>Completed Jobs</h3>
+
+        <p>
+          {{
+            dashboardService
+            .completedJobs()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Pending Jobs</h3>
+
+        <p>
+          {{
+            dashboardService
+            .pendingJobs()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Printing Stage</h3>
+
+        <p>
+          {{
+            dashboardService
+            .printingJobs()
+          }}
+        </p>
+
+      </div>
+
+      <div class="stat-card">
+
+        <h3>Delayed Jobs</h3>
+
+        <p>
+          {{
+            dashboardService
+            .delayedJobs()
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

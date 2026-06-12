@@ -1,0 +1,31 @@
+.user-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+
+  gap: 1rem;
+}
+
+.user-box {
+  background: #f8fafc;
+
+  border-radius: 14px;
+
+  padding: 1rem;
+}
+
+.user-box span {
+  font-size: 0.85rem;
+
+  color: #64748b;
+}
+
+.user-box h2 {
+  margin: 0;
+  margin-top: 0.5rem;
+
+  font-size: 2rem;
+
+  color: #1e293b;
+}

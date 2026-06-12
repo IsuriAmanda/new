@@ -1,0 +1,41 @@
+.dashboard-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.summary-box {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 14px;
+
+  span {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+
+  h3 {
+    margin-top: 0.5rem;
+    color: #1e293b;
+  }
+}

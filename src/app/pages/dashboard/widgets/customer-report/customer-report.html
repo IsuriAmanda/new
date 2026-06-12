@@ -1,0 +1,56 @@
+<app-dashboard-card>
+
+  <div class="dashboard-title">
+    Customer Report
+  </div>
+
+  <table class="customer-table">
+
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Orders</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>ABC Holdings</td>
+        <td>24</td>
+        <td>
+          <app-status-badge
+            label="Top Customer"
+            type="success">
+          </app-status-badge>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Vision Tech</td>
+        <td>18</td>
+        <td>
+          <app-status-badge
+            label="Repeat"
+            type="info">
+          </app-status-badge>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Nova Printing</td>
+        <td>12</td>
+        <td>
+          <app-status-badge
+            label="Active"
+            type="success">
+          </app-status-badge>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</app-dashboard-card>

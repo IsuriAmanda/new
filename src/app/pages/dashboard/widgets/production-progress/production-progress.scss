@@ -1,0 +1,101 @@
+.stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stage-card {
+  padding: 1rem;
+  border-radius: 16px;
+  color: white;
+
+  span {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  h3 {
+    margin-top: 0.5rem;
+    font-size: 1.8rem;
+  }
+}
+
+/* Stage colors */
+
+.printing {
+  background: #3b82f6;
+}
+
+.cutting {
+  background: #8b5cf6;
+}
+
+.folding {
+  background: #0ea5e9;
+}
+
+.laminating {
+  background: #14b8a6;
+}
+
+.binding {
+  background: #f59e0b;
+}
+
+.packing {
+  background: #22c55e;
+}
+
+/* Summary */
+
+.progress-summary {
+  margin-top: 1.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.summary-item {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 14px;
+
+  span {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  h4 {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    color: #1e293b;
+  }
+}
+
+.delayed h4 {
+  color: #dc2626;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+  .stages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .progress-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .stages-grid,
+  .progress-summary {
+    grid-template-columns: 1fr;
+  }
+
+}

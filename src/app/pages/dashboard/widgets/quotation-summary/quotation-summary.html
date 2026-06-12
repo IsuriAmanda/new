@@ -1,0 +1,39 @@
+<app-dashboard-card>
+
+  <div class="dashboard-title">
+    Quotation Summary
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas
+      baseChart
+      [data]="doughnutChartData"
+      [type]="doughnutChartType">
+    </canvas>
+  </div>
+
+  <div class="summary-grid">
+
+    <div class="summary-box">
+      <span>Confirmed</span>
+      <h3>180</h3>
+    </div>
+
+    <div class="summary-box">
+      <span>Rejected</span>
+      <h3>32</h3>
+    </div>
+
+    <div class="summary-box">
+      <span>Average Value</span>
+      <h3>LKR 12,500</h3>
+    </div>
+
+    <div class="summary-box">
+      <span>Monthly Value</span>
+      <h3>LKR 450,000</h3>
+    </div>
+
+  </div>
+
+</app-dashboard-card>
