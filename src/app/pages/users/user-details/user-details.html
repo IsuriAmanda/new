@@ -1,0 +1,65 @@
+<div class="user-details-page">
+  <div class="page-header">
+    <div>
+      <a routerLink="/users" class="back-link">User Management</a>
+      <h1>{{ user.name }}</h1>
+      <p>{{ user.role }} - {{ user.department }}</p>
+    </div>
+
+    <a routerLink="/users/edit" class="primary-btn">Edit User</a>
+  </div>
+
+  <div class="details-grid">
+    <section class="profile-card">
+      <div class="avatar">{{ user.name.charAt(0) }}</div>
+      <h2>{{ user.name }}</h2>
+      <span class="status">{{ user.status }}</span>
+    </section>
+
+    <section class="info-card">
+      <h2>Account Details</h2>
+      <div class="info-grid">
+        <span>User ID</span>
+        <strong>{{ user.id }}</strong>
+
+        <span>Email</span>
+        <strong>{{ user.email }}</strong>
+
+        <span>Phone</span>
+        <strong>{{ user.phone }}</strong>
+
+        <span>Role</span>
+        <strong>{{ user.role }}</strong>
+
+        <span>Department</span>
+        <strong>{{ user.department }}</strong>
+
+        <span>Joined Date</span>
+        <strong>{{ user.joinedDate }}</strong>
+
+        <span>Last Login</span>
+        <strong>{{ user.lastLogin }}</strong>
+      </div>
+    </section>
+  </div>
+
+  <section class="activity-card">
+    <h2>Recent User Activity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Action</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of activityRows">
+          <td>{{ row.date }}</td>
+          <td>{{ row.action }}</td>
+          <td>{{ row.detail }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

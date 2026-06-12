@@ -1,0 +1,56 @@
+<div class="user-form-page">
+  <div class="page-header">
+    <div>
+      <a routerLink="/users" class="back-link">User Management</a>
+      <h1>Edit User</h1>
+      <p>Update role, department, and account status.</p>
+    </div>
+  </div>
+
+  <form class="form-card">
+    <div class="form-grid">
+      <label>
+        Full Name
+        <input type="text" [(ngModel)]="user.fullName" name="fullName">
+      </label>
+
+      <label>
+        Email
+        <input type="email" [(ngModel)]="user.email" name="email">
+      </label>
+
+      <label>
+        Phone
+        <input type="tel" [(ngModel)]="user.phone" name="phone">
+      </label>
+
+      <label>
+        Role
+        <select [(ngModel)]="user.role" name="role">
+          <option *ngFor="let role of roles">{{ role }}</option>
+        </select>
+      </label>
+
+      <label>
+        Department
+        <select [(ngModel)]="user.department" name="department">
+          <option *ngFor="let department of departments">{{ department }}</option>
+        </select>
+      </label>
+
+      <label>
+        Status
+        <select [(ngModel)]="user.status" name="status">
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/users" class="secondary-btn">Cancel</a>
+      <button type="button" class="danger-btn">Deactivate</button>
+      <button type="button" class="primary-btn">Update User</button>
+    </div>
+  </form>
+</div>
